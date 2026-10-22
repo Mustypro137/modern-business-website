@@ -1,0 +1,323 @@
+/* ---------- Design tokens: change a value here, it changes everywhere ---------- */
+:root {
+  /* Colour (named after the wood they come from) */
+  --ground: #EFEBE4;   /* pale ash: page background */
+  --ink: #1F1A15;      /* dark walnut: body text */
+  --muted: #5A5148;    /* small notes only */
+  --accent: #2F4A3A;   /* workshop green: buttons only */
+  --on-accent: #FFFFFF;
+  --field-dark: #3B2A20;  /* walnut: dark sections */
+  --field-light: #D9D4CA; /* ash: light alternate sections */
+
+  /* Type */
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --text: 1.0625rem;                                /* 17px */
+  --text-small: 0.9375rem;                          /* 15px */
+  --title: clamp(2.25rem, 1rem + 3.2vw, 3.5rem);    /* h1: sized so the hero headline fits 2 lines */
+  --heading: clamp(1.75rem, 1.1rem + 2.4vw, 3.25rem); /* h2 */
+
+  /* Space (multiples of 8) */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 5rem;
+  --margin: clamp(1rem, 4vw, 2.5rem); /* page side margin */
+}
+
+/* Very small phones (320px): a smaller h1 so the headline stays on 2 lines */
+@media (max-width: 24rem) {
+  :root { --title: 1.875rem; }
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+img { display: block; max-width: 100%; }
+
+/* ---------- Base ---------- */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  font-size: var(--text);
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--ground);
+}
+
+h1, h2, h3 { line-height: 1.05; letter-spacing: -0.03em; font-weight: 700; }
+h1 { font-size: var(--title); }
+h2 { font-size: var(--heading); max-width: 20ch; }
+h3 { font-size: 1.375rem; letter-spacing: -0.01em; line-height: 1.2; }
+
+p { max-width: 62ch; }
+p, dd, li { text-wrap: pretty; }   /* avoids a single word alone on the last line (browsers that don't know it ignore it) */
+
+a { color: inherit; }
+
+/* ---------- Accessibility ---------- */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--space-2);
+  top: -4rem;               /* hidden above the screen until focused */
+  padding: var(--space-1) var(--space-2);
+  background: var(--ink);
+  color: var(--ground);
+  z-index: 100;
+}
+.skip-link:focus { top: var(--space-2); }
+
+/* ---------- Button ---------- */
+.button {
+  display: inline-block;
+  padding: 0.85rem 1.5rem;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0;          /* square corners, decided once */
+  transition: background-color 150ms ease, transform 150ms ease;
+}
+.button:hover { background: #243a2d; }
+.button:active { transform: translateY(1px); }
+
+/* ---------- Header and navigation ---------- */
+header {
+  display: flex;
+  flex-wrap: wrap;                 /* on small screens the links drop to row 2 */
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-1) var(--space-3);
+  padding: var(--space-2) var(--margin);
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+nav ul {
+  display: flex;
+  gap: var(--space-3);
+  padding: 0;
+  list-style: none;
+}
+
+nav a {
+  display: block;
+  padding: 0.75rem 0;              /* makes the tap area about 48px tall */
+  text-decoration: none;
+}
+nav a:hover { text-decoration: underline; text-underline-offset: 6px; }
+
+/* Phone: logo and button on row 1, links on row 2 */
+@media (max-width: 40rem) {
+  header .button { padding: 0.6rem 1rem; font-size: var(--text-small); }  /* so logo and button share row 1 */
+  nav { order: 3; width: 100%; }
+  nav ul { justify-content: space-between; gap: var(--space-2); }
+}
+
+/* ---------- Sections ---------- */
+main > section {
+  padding: clamp(3rem, 8vw, 7.5rem) var(--margin);  /* same side margin as the header */
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  display: grid;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.hero-text > * + * { margin-top: var(--space-3); }
+.hero-text .button { margin-top: var(--space-4); }
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;               /* crop instead of squash */
+  object-position: center;
+}
+
+/* Tablet: still one column, but the photo is wider and shorter */
+@media (min-width: 40rem) {
+  .hero-image { aspect-ratio: 3 / 2; }
+}
+
+/* Laptop and up: text on the left, photo on the right.
+   Two columns need about 1024px, or the headline wraps onto 3 lines. */
+@media (min-width: 64rem) {
+  .hero { grid-template-columns: 1fr 1fr; gap: var(--space-5); }
+  .hero h1 { font-size: clamp(2.5rem, 4.2vw, 3.5rem); }   /* scales with the column, so it stays on 2 lines */
+  .hero-image { aspect-ratio: 4 / 5; }
+}
+
+/* ---------- Pieces ---------- */
+.featured {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+/* The big colour field: JavaScript changes --wood and --wood-ink */
+.wood-field {
+  display: flex;
+  align-items: flex-end;
+  aspect-ratio: 4 / 3;
+  padding: var(--space-3);
+  background: var(--wood, #C9A66B);
+  color: var(--wood-ink, var(--ink));
+  transition: background-color 300ms ease, color 300ms ease;
+}
+.wood-name {
+  font-size: var(--title);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.featured-info > * + * { margin-top: var(--space-2); }
+.featured-info .button { margin-top: var(--space-3); }
+
+.wood-list { padding: 0; list-style: none; }
+.wood-list li + li { margin-top: var(--space-1); }
+.wood-list[hidden] { display: none; }   /* needed because our list sets its own display */
+
+.wood-result > * + * { margin-top: var(--space-2); }
+.wood-text { min-height: 3.2em; }       /* stops the layout jumping between woods */
+.wood-price { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; }
+
+/* Picker: real radio buttons, drawn as three square buttons */
+.wood-picker { display: flex; flex-wrap: wrap; gap: var(--space-1); padding: 0; border: 0; }
+.wood-picker legend { margin-bottom: var(--space-1); padding: 0; font-weight: 600; }
+.wood-picker label { cursor: pointer; }
+.wood-picker input {
+  position: absolute;                   /* visually hidden but still keyboard-focusable */
+  opacity: 0;
+}
+.wood-picker span {
+  display: block;
+  min-width: 5.5rem;
+  padding: 0.85rem 1.25rem;
+  text-align: center;
+  font-weight: 600;
+  background: var(--field-light);
+  transition: background-color 150ms ease, color 150ms ease;
+}
+.wood-picker label:hover span { background: #C2BAA8; }
+.wood-picker input:checked + span { background: var(--accent); color: var(--on-accent); }
+.wood-picker input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+.other-pieces {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+  padding: 0;
+  list-style: none;
+}
+.other-pieces li { padding: var(--space-3); background: var(--field-light); }
+.other-pieces li > * + * { margin-top: var(--space-1); }
+.price { font-weight: 700; }
+
+@media (min-width: 48rem) {
+  .featured { grid-template-columns: 1.2fr 1fr; gap: var(--space-5); align-items: center; }
+  .wood-field { aspect-ratio: 1 / 1; }
+  .other-pieces { grid-template-columns: 1fr 1fr; }
+}
+
+/* ---------- About: the first dark section ---------- */
+#about {
+  display: grid;
+  gap: var(--space-4);
+  background: var(--field-dark);
+  color: var(--ground);              /* same two variables, swapped */
+}
+.about-text > * + * { margin-top: var(--space-3); }
+
+.about-steps h3 { margin-bottom: var(--space-3); }
+.about-steps ol { padding-left: 1.25rem; }
+.about-steps li { padding-left: var(--space-1); }
+.about-steps li + li { margin-top: var(--space-3); }
+.about-steps strong { display: block; font-size: 1.25rem; letter-spacing: -0.01em; }
+
+@media (min-width: 64rem) {
+  #about { grid-template-columns: 1.2fr 1fr; gap: var(--space-5); align-items: start; }
+}
+
+/* ---------- Reviews ---------- */
+#reviews { background: var(--field-light); }
+.sample-note { margin-top: var(--space-2); font-weight: 600; }
+
+.reviews {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+.reviews blockquote p { font-size: 1.375rem; line-height: 1.4; letter-spacing: -0.01em; }
+.reviews blockquote footer { margin-top: var(--space-2); font-size: var(--text-small); font-weight: 600; }
+
+@media (min-width: 64rem) {
+  .reviews { grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
+}
+
+/* ---------- Contact ---------- */
+#contact {
+  display: grid;
+  gap: var(--space-4);
+}
+.contact-text > * + * { margin-top: var(--space-3); }
+.contact-text .button { margin-top: var(--space-4); }
+
+.contact-details > div + div { margin-top: var(--space-3); }
+.contact-details dt { font-weight: 600; color: var(--muted); }
+.contact-details dd {
+  margin: 0;
+  font-size: clamp(1.125rem, 2.6vw, 1.375rem);   /* the long email must fit from 320px to tablet */
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;                      /* safety net: break a long word rather than scroll sideways */
+}
+.contact-details a { display: inline-block; padding: 0.3rem 0; text-underline-offset: 4px; }   /* bigger tap area */
+.contact-details a:hover { text-decoration-thickness: 2px; }
+
+@media (min-width: 48rem) {
+  /* Tablet: equal columns and a smaller gap, so the long email fits on one line */
+  #contact { grid-template-columns: 1fr 1fr; gap: var(--space-4); align-items: start; }
+}
+@media (min-width: 64rem) {
+  #contact { grid-template-columns: 1.2fr 1fr; gap: var(--space-5); }
+}
+
+/* ---------- Footer ---------- */
+body > footer {
+  padding: var(--space-5) var(--margin) var(--space-4);
+  background: var(--field-dark);
+  color: var(--ground);
+}
+/* The name comes back at full width, as the last thing on the page */
+.footer-name {
+  max-width: none;
+  margin-bottom: var(--space-3);
+  font-size: clamp(2rem, 10.5vw, 11rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.credit { font-size: var(--text-small); margin-top: var(--space-2); }
+body > footer :focus-visible { outline-color: var(--ground); }   /* green is too dark on walnut */
+
+.open-status { display: block; margin-top: 0.25rem; font-weight: 600; }
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition-duration: 0.01ms !important; }
+}

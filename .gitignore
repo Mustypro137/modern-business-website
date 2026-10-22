@@ -1,0 +1,7 @@
+# Tool folders that are not part of the website
+.claude/
+.taste-skill/
+
+# Operating system files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Oakridge Joinery | Handmade solid wood furniture</title>
+  <meta name="description" content="Oakridge Joinery builds tables, chairs and shelves by hand in oak, walnut and ash. Fictional business made for a portfolio project.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header>
+    <a href="#top" class="logo">Oakridge Joinery</a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#pieces">Pieces</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="#contact" class="button">Request a quote</a>
+  </header>
+
+  <main id="main">
+
+    <section id="top" class="hero" aria-labelledby="hero-title">
+      <div class="hero-text">
+        <h1 id="hero-title">Handmade furniture in solid wood</h1>
+        <p>Tables, chairs and shelves built to order in our workshop, one piece at a time.</p>
+        <a href="#pieces" class="button">See our pieces</a>
+      </div>
+      <img class="hero-image" src="images/oak-cross-section.jpg" width="1200" height="1147"
+           alt="Close-up of a sawn oak trunk showing its growth rings and fine rays">
+    </section>
+
+    <section id="pieces" aria-labelledby="pieces-title">
+      <h2 id="pieces-title">Pieces we build</h2>
+
+      <article class="featured">
+        <div class="wood-field" aria-hidden="true"><span class="wood-name">Oak</span></div>
+        <div class="featured-info">
+          <h3>The Dining Table</h3>
+          <p>Seats six to ten, built from solid boards and finished with hard wax oil.</p>
+
+          <!-- Works without JavaScript. With JavaScript, main.js hides this list and builds a picker from it. -->
+          <ul class="wood-list">
+            <li data-colour="#C9A66B" data-ink="#1F1A15" data-price="From £1,800">
+              <strong>Oak</strong> Pale and open-grained. Light, warm and hard-wearing. From £1,800.
+            </li>
+            <li data-colour="#5B3A29" data-ink="#EFEBE4" data-price="From £2,300">
+              <strong>Walnut</strong> Deep brown with a soft, swirling grain. From £2,300.
+            </li>
+            <li data-colour="#CBC3B1" data-ink="#1F1A15" data-price="From £1,700">
+              <strong>Ash</strong> Creamy and straight-grained, with a pale, calm look. From £1,700.
+            </li>
+            <li data-colour="#8C4A32" data-ink="#EFEBE4" data-price="From £1,700">
+              <strong>Cherry</strong> Creamy and straight-grained, with a pale, calm look. From £1,700.
+            </li>
+          </ul>
+
+          <div class="wood-result" aria-live="polite">
+            <p class="wood-text"></p>
+            <p class="wood-price"></p>
+          </div>
+          <a href="#contact" class="button">Ask about this table</a>
+        </div>
+      </article>
+
+      <ul class="other-pieces">
+        <li>
+          <h3>The Reading Chair</h3>
+          <p>A low, wide chair with a woven seat.</p>
+          <p class="price">From £640</p>
+        </li>
+        <li>
+          <h3>The Wall Shelf</h3>
+          <p>A solid board shelf, cut to your wall.</p>
+          <p class="price">From £220</p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="about" aria-labelledby="about-title">
+      <div class="about-text">
+        <h2 id="about-title">A small workshop that finishes what it starts</h2>
+        <p>We build tables, chairs and shelves one at a time, from boards we choose ourselves. Every joint is cut by hand and every surface is finished by hand.</p>
+        <p>Nothing leaves the workshop until we would be happy to own it. If something is wrong when it arrives, we fix it.</p>
+      </div>
+
+      <div class="about-steps">
+        <h3>How an order works</h3>
+        <ol>
+          <li>
+            <strong>Tell us what you need.</strong>
+            The piece, the wood and the size you have in mind.
+          </li>
+          <li>
+            <strong>Get a drawing and a price.</strong>
+            We send both, and the price is fixed before we start.
+          </li>
+          <li>
+            <strong>We build it.</strong>
+            Made to order in the workshop, usually in six to eight weeks.
+          </li>
+          <li>
+            <strong>We deliver it.</strong>
+            Brought to your home and set up where you want it.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="reviews" aria-labelledby="reviews-title">
+      <h2 id="reviews-title">What customers say</h2>
+      <p class="sample-note">Sample reviews. These are fictional and written for this portfolio project.</p>
+
+      <div class="reviews">
+        <blockquote>
+          <p>The table arrived exactly as drawn, and the walnut looks even better in the room than it did on the screen.</p>
+          <footer>Sample customer A, Dining Table in walnut</footer>
+        </blockquote>
+        <blockquote>
+          <p>They told us the price up front and it never changed. The chair is now the most comfortable seat in the house.</p>
+          <footer>Sample customer B, Reading Chair</footer>
+        </blockquote>
+        <blockquote>
+          <p>Our shelf fits the alcove to the millimetre. I would never have thought to ask for that.</p>
+          <footer>Sample customer C, Wall Shelf</footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-title">
+      <div class="contact-text">
+        <h2 id="contact-title">Tell us what you need</h2>
+        <p>Send us the piece, the wood and the size you have in mind, and we will reply with a drawing and a price.</p>
+        <a class="button" href="mailto:hello@oakridgejoinery.example?subject=Quote%20request&amp;body=Piece%3A%0AWood%3A%0ASize%3A%0A">Email us</a>
+      </div>
+
+      <dl class="contact-details">
+        <div>
+          <dt>Phone</dt>
+          <dd><a href="tel:+442079460000">+44 20 7946 0000</a></dd>
+        </div>
+        <div>
+          <dt>Email</dt>
+          <dd><a href="mailto:hello@oakridgejoinery.example">hello@oakridgejoinery.example</a></dd>
+        </div>
+        <div>
+          <dt>Workshop</dt>
+          <dd>Unit 4, Mill Lane, Oakridge (fictional address)</dd>
+        </div>
+        <div>
+          <dt>Hours</dt>
+          <dd>
+            Monday to Friday, 8:00 to 17:00
+            <!-- main.js fills this in. Days: 0 = Sunday ... 6 = Saturday. Times use London time. -->
+            <span class="open-status" data-days="1,2,3,4,5" data-open="8" data-close="17"></span>
+          </dd>
+        </div>
+      </dl>
+    </section>
+
+  </main>
+
+  <footer>
+    <p class="footer-name">Oakridge Joinery</p>
+    <p>A fictional business made for a portfolio project.</p>
+    <p class="credit">
+      Hero photo: <a href="https://commons.wikimedia.org/wiki/File:Eiche_Querschnitt_oder_auch_Hirnschnitt.jpg">"Eiche Querschnitt oder auch Hirnschnitt"</a>
+      by Friedrich Böhringer, <a href="https://creativecommons.org/licenses/by-sa/3.0/at/deed.en">CC BY-SA 3.0</a>, via Wikimedia Commons. Cropped, resized and compressed for the web.
+    </p>
+  </footer>
+
+</body>
+</html>
